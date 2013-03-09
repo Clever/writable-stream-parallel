@@ -2,7 +2,7 @@
 
 # writable-stream-parallel
 
-Extension of the new node.js [Writable stream](http://nodejs.org/docs/v0.9.12/api/stream.html#stream_class_stream_writable) interface that allows for parallel writes. Useful for data pipelines.
+Extension of the new node.js [Writable stream](http://nodejs.org/docs/v0.9.12/api/stream.html#stream_class_stream_writable) interface that allows for parallel writes.
 
 ## Installation
 
@@ -47,7 +47,7 @@ wrote 3
 
 ## stream-writable-parallel behavior
 
-Serial writes limit the usefulness of streams in a lot of settings. `stream-writable-parallel` provides a Writable class that parallelizes call to `_write` up to a certain `maxWrites`:
+Serial writes limit the usefulness of streams in a lot of settings. `stream-writable-parallel` provides a Writable class that parallelizes calls to `_write` up to a certain `maxWrites`:
 
 ```javascript
 var Writable = require('stream-writable-parallel').Writable;
