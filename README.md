@@ -50,7 +50,7 @@ wrote 3
 Serial writes limit the usefulness of streams in a lot of settings. `stream-writable-parallel` provides a Writable class that parallelizes calls to `_write` up to a certain `maxWrites`:
 
 ```javascript
-var Writable = require('stream-writable-parallel').Writable;
+var Writable = require('writable-stream-parallel').Writable;
 
 var writable = new Writable({objectMode: true, maxWrites: 10});
 writable._write = function(chunk, encoding, cb) {

@@ -68,20 +68,6 @@ class WritableState
     @buffer = []
     @bufferProcessing = false
 
-    # write()/_write()-specific things! TODO: factor out into their own object
-    # detect if _write() callback is called in this tick, and make
-    # sure the write() cb get called asynchronously
-    @sync = true
-
-    # callback passed to _write(chunk, cb)
-    @onwrite = (er) -> onwrite(stream, er)
-
-    # callback user supplies to write()
-    @writecb = null
-
-    # size of buffer being written (or 1 in objectmode)
-    @writelen = null
-
 class Writable extends NodeWritable
   constructor: (options) ->
     super
