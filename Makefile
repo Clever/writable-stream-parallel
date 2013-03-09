@@ -1,4 +1,4 @@
-.PHONY=test publish
+.PHONY=test publish clean
 COFFEE=./node_modules/coffee-script/bin/coffee
 COFFEE_FILES = $(shell find lib/ -type f -name '*.coffee')
 JS_FILES = $(patsubst lib/%.coffee, lib-js/%.js, $(COFFEE_FILES))
