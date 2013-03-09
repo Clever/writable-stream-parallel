@@ -1,0 +1,28 @@
+{
+  "name": "writable-stream-parallel",
+  "version": "0.0.1",
+  "description": "Parallelize your _write()s",
+  "main": "index.js",
+  "engines" : { "node" : ">=0.9.12" },
+  "scripts": {
+    "test": "make -B test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Clever/writable-stream-parallel.git"
+  },
+  "keywords": [
+    "nodejs",
+    "streams",
+    "parallel"
+  ],
+  "author": "Rafael Garcia",
+  "license": "BSD",
+  "dependencies": {
+    "coffee-script": "~1.4.0"
+  },
+  "devDependencies": {
+    "debug": "~0.7.2",
+    "mocha": "~1.8.1"
+  }
+}
