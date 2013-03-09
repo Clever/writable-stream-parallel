@@ -1,4 +1,4 @@
-NodeWritable = require('stream').Writable
+{EventEmitter} = require 'events'
 
 class WriteReq
   constructor: (@stream, @len, @chunk, @encoding, @cb) ->
@@ -68,10 +68,8 @@ class WritableState
     @buffer = []
     @bufferProcessing = false
 
-class Writable extends NodeWritable
+class Writable extends EventEmitter
   constructor: (options) ->
-    super
-    # overwrite with our custom writablestate
     @state = new WritableState options, @
 
   writeAfterEnd: (cb) =>
