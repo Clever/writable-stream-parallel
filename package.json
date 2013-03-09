@@ -1,6 +1,6 @@
 {
   "name": "writable-stream-parallel",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Parallelize your _write()s",
   "main": "index.js",
   "engines" : { "node" : ">=0.9.11 <= 0.9.12" },
