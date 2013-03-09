@@ -1,6 +1,6 @@
 {
   "name": "writable-stream-parallel",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Parallelize your _write()s",
   "main": "index.js",
   "engines" : { "node" : ">=0.9.11 <= 0.9.12" },
@@ -19,9 +19,9 @@
   "author": "Rafael Garcia",
   "license": "BSD",
   "dependencies": {
-    "coffee-script": "~1.4.0"
   },
   "devDependencies": {
+    "coffee-script": "~1.6.0",
     "debug": "~0.7.2",
     "mocha": "~1.8.1"
   }
