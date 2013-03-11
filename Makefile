@@ -11,7 +11,8 @@ lib-js/%.js: lib/%.coffee
 	$(COFFEE) -o "$(@D)" -c "$<"
 
 test: all
-	. ~/nvm/nvm.sh && nvm use 0.9.12 && node --version && DEBUG=tests NODE_ENV=test node_modules/mocha/bin/mocha --compilers coffee:coffee-script test/test.coffee
+	# assumes node version set correctly in shell environment
+	DEBUG=tests NODE_ENV=test node_modules/mocha/bin/mocha --compilers coffee:coffee-script test/test.coffee
 
 publish:
 	$(eval VERSION := $(shell grep version package.json | sed -ne 's/^[ ]*"version":[ ]*"\([0-9\.]*\)",/\1/p';))
