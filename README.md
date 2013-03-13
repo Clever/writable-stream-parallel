@@ -1,3 +1,5 @@
+[![Build Status](https://secure.travis-ci.org/Clever/writable-stream-parallel.png)](http://travis-ci.org/Clever/writable-stream-parallel)
+
 # writable-stream-parallel
 
 Extension of the new node.js [Writable stream](http://nodejs.org/docs/v0.10.0/api/stream.html#stream_class_stream_writable) interface that allows for parallel writes.
@@ -8,7 +10,7 @@ Extension of the new node.js [Writable stream](http://nodejs.org/docs/v0.10.0/ap
 npm install writable-stream-parallel
 ```
 
-Currently only tested on node v0.9.12.
+Currently only works with node v0.9.{11,12} and v0.10.x.
 
 ## Motivation
 
