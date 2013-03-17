@@ -4,7 +4,7 @@
   "description": "Parallelize your _write()s",
   "main": "index.js",
   "engines": {
-    "node": ">=0.9.11"
+    "node": ">=0.8.x"
   },
   "scripts": {
     "test": "make -B test"
@@ -21,6 +21,7 @@
   "author": "Rafael Garcia",
   "license": "BSD",
   "dependencies": {
+    "readable-stream": "~1.0.2"
   },
   "devDependencies": {
     "coffee-script": "~1.6.0",

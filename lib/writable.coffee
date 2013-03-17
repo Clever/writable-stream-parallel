@@ -1,4 +1,4 @@
-NodeWritable = require('stream').Writable
+NodeWritable = require "#{__dirname}/../node_modules/readable-stream/writable"
 
 class WriteReq
   constructor: (@stream, @len, @chunk, @encoding, @cb) ->

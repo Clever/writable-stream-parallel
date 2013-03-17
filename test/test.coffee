@@ -1,7 +1,7 @@
 assert = require 'assert'
 debug = require('debug') 'tests'
 {Writable,Transform} = require "#{__dirname}/../index"
-{Readable} = require 'stream'
+Readable = require 'readable-stream'
 _ = require 'underscore'
 
 class ArrayStream extends Readable
