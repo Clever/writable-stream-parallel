@@ -101,10 +101,10 @@ describe 'Transform', ->
   #     assert.deepEqual stats.transformed, [[1,2],[2,3],[3,4],[4,5],[5,6]]
   #     done()
 
-  it 'transforms serially if maxWrites is 1', (done) ->
-    @timeout 5000
-    new ArrayStream([1..5]).pipe(@transform_fac({maxWrites: 1})).on 'stats', (stats) ->
-      assert.equal stats.inflight_max, 1
-      assert.equal stats.total, 5
-      assert.deepEqual stats.transformed, [[1,2],[2,3],[3,4],[4,5],[5,6]]
-      done()
+  # it 'transforms serially if maxWrites is 1', (done) ->
+  #   @timeout 5000
+  #   new ArrayStream([1..5]).pipe(@transform_fac({maxWrites: 1})).on 'stats', (stats) ->
+  #     assert.equal stats.inflight_max, 1
+  #     assert.equal stats.total, 5
+  #     assert.deepEqual stats.transformed, [[1,2],[2,3],[3,4],[4,5],[5,6]]
+  #     done()
