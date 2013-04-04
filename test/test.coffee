@@ -68,43 +68,52 @@ describe 'Transform', ->
         inflight: 0
         inflight_max: 0
         total: 0
-        transformed: []
       transform._transform = (chunk, encoding, cb_t) ->
         @stats.inflight_max = Math.max @stats.inflight_max, ++@stats.inflight
-        debug 'transforming', chunk
+        debug 'transforming', chunk, @stats.inflight_max
         setTimeout () =>
-          @stats.transformed.push [chunk, chunk+1]
           @stats.inflight--
           @stats.total++
-          debug 'transfomed', chunk, chunk+1, @stats.inflight
+          debug 'transformed', chunk, chunk+1, @stats.inflight
           @push chunk+1
           cb_t()
         , 500
-      transform.on 'finish', () ->
-        debug 'finish', @stats
-        @emit 'stats', @stats
       transform
+    @sink_fac = (options) ->
+      writable = new Writable _({ objectMode: true }).extend options
+      writable._write = (chunk, encoding, cb) ->
+        @result ?= []
+        @result.push chunk
+        debug 'WRITE', chunk
+        cb()
+      writable
 
-  # it 'allows for parallel transforms', (done) ->
-  #   @timeout 5000
-  #   new ArrayStream([1..5]).pipe(@transform_fac({maxWrites: 5})).on 'stats', (stats) ->
-  #     assert.equal stats.inflight_max, 5
-  #     assert.equal stats.total, 5
-  #     assert.deepEqual stats.transformed, [[1,2],[2,3],[3,4],[4,5],[5,6]]
-  #     done()
+  it 'allows for parallel transforms', (done) ->
+    @timeout 5000
+    ts = @transform_fac { maxWrites: 5 }
+    sink = @sink_fac {}
+    new ArrayStream([1..5]).pipe(ts).pipe(sink).on 'finish', () ->
+      assert.equal ts.stats.inflight_max, 5
+      assert.equal ts.stats.total, 5
+      assert.deepEqual sink.result, [2,3,4,5,6]
+      done()
 
-  # it 'respects the maximum for parallel transforms', (done) ->
-  #   @timeout 5000
-  #   new ArrayStream([1..5]).pipe(@transform_fac({maxWrites: 3})).on 'stats', (stats) ->
-  #     assert.equal stats.inflight_max, 3
-  #     assert.equal stats.total, 5
-  #     assert.deepEqual stats.transformed, [[1,2],[2,3],[3,4],[4,5],[5,6]]
-  #     done()
+  it 'respects the maximum for parallel transforms', (done) ->
+    @timeout 5000
+    ts = @transform_fac { maxWrites: 3 }
+    sink = @sink_fac {}
+    new ArrayStream([1..5]).pipe(ts).pipe(sink).on 'finish', () ->
+      assert.equal ts.stats.inflight_max, 3
+      assert.equal ts.stats.total, 5
+      assert.deepEqual sink.result, [2,3,4,5,6]
+      done()
 
-  # it 'transforms serially if maxWrites is 1', (done) ->
-  #   @timeout 5000
-  #   new ArrayStream([1..5]).pipe(@transform_fac({maxWrites: 1})).on 'stats', (stats) ->
-  #     assert.equal stats.inflight_max, 1
-  #     assert.equal stats.total, 5
-  #     assert.deepEqual stats.transformed, [[1,2],[2,3],[3,4],[4,5],[5,6]]
-  #     done()
+  it 'transforms serially if maxWrites is 1', (done) ->
+    @timeout 5000
+    ts = @transform_fac { maxWrites: 1 }
+    sink = @sink_fac {}
+    new ArrayStream([1..5]).pipe(ts).pipe(sink).on 'finish', () ->
+      assert.equal ts.stats.inflight_max, 1
+      assert.equal ts.stats.total, 5
+      assert.deepEqual sink.result, [2,3,4,5,6]
+      done()
