@@ -1,4 +1,4 @@
-[![Build Status](https://secure.travis-ci.org/Clever/writable-stream-parallel.png)](http://travis-ci.org/Clever/writable-stream-parallel)
+![Build Status](https://drone.ops.clever.com/github.com/Clever/writable-stream-parallel/status.svg?branch=master)
 
 # writable-stream-parallel
 
